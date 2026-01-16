@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude - Impossible? Possible.</title>
+  <!-- Google Fonts - DM Sans (similar to Styrene) and Source Serif 4 (similar to Tiempos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <!-- Claude Logo -->
+        <a href="/" class="logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg" alt="Claude" class="logo-svg">
+        </a>
+      </div>
+
+      <div class="nav-center">
+        <div class="nav-links">
+          <div class="nav-item">
+            <button type="button" class="nav-link">
+              <span>Meet Claude</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-link">
+              <span>Platform</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-link">
+              <span>Solutions</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-link">
+              <span>Pricing</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-link">
+              <span>Learn</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <button type="button" class="nav-btn-outline">
+            <a href="#">Contact sales</a>
+          </button>
+          <button type="button" class="nav-btn-filled">Try Claude</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <!-- Left Column -->
+    <div class="hero-left-wrapper">
+      <div class="hero-left">
+        <div class="hero-spacer-top"></div>
+        <div class="hero-content">
+          <h2 class="hero-headline">
+            Impossible?<br>
+            Possible.
+          </h2>
+          <h3 class="hero-subheading">The AI for problem solvers</h3>
+
+          <!-- Login Card -->
+          <div class="login-card">
+            <div class="login-card-inner">
+              <div class="login-buttons">
+                <div class="button-wrapper">
+                  <button type="button" class="btn-google">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" width="16" height="16" class="google-icon">
+                    Continue with Google
+                  </button>
+                </div>
+                <p class="or-text">or</p>
+                <form class="login-form">
+                  <label for="email" class="visually-hidden">Email</label>
+                  <input id="email" type="email" class="email-input" placeholder="name@company.com" required>
+
+                  <!-- Work email suggestion (hidden by default) -->
+                  <div id="work-email-hint" class="work-email-hint" style="display: none;">
+                    <span class="hint-arrow"></span>
+                    <strong>Using your work email</strong> (if you have one) will make it easier to collaborate with your team on Claude.
+                    <button type="button" class="hint-change-btn" onclick="document.getElementById('email').focus(); document.getElementById('email').select();">Change</button>
+                  </div>
+
+                  <div class="submit-wrapper">
+                    <button type="submit" class="btn-submit">
+                      Continue
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="disclaimer">
+              <div class="disclaimer-text">
+                By continuing, you acknowledge Anthropic's <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Privacy Policy</a> and agree to get occasional product update and promotional emails.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-spacer-bottom"></div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="hero-right-wrapper">
+      <div class="hero-video-container">
+        <div class="hero-video-inner">
+          <video class="hero-video" autoplay muted loop playsinline src="https://claude.ai/images/home-page-assets/videos/claude_login.mp4"></video>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Personal email domains to detect
+    const personalDomains = [
+      'gmail.com',
+      'yahoo.com',
+      'yahoo.co.uk',
+      'hotmail.com',
+      'hotmail.co.uk',
+      'outlook.com',
+      'live.com',
+      'msn.com',
+      'aol.com',
+      'icloud.com',
+      'me.com',
+      'mac.com',
+      'protonmail.com',
+      'proton.me',
+      'mail.com',
+      'zoho.com',
+      'yandex.com',
+      'gmx.com',
+      'gmx.net'
+    ];
+
+    const emailInput = document.getElementById('email');
+    const workEmailHint = document.getElementById('work-email-hint');
+
+    emailInput.addEventListener('input', function() {
+      const email = this.value.toLowerCase();
+      const atIndex = email.indexOf('@');
+
+      if (atIndex !== -1) {
+        const domain = email.substring(atIndex + 1);
+        const isPersonalEmail = personalDomains.some(d => domain === d || domain.endsWith('.' + d));
+
+        if (isPersonalEmail) {
+          workEmailHint.style.display = 'block';
+        } else {
+          workEmailHint.style.display = 'none';
+        }
+      } else {
+        workEmailHint.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

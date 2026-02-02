@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Diff - Claude Code Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <!-- Header -->
+            <div class="sidebar-header">
+                <a href="#" class="logo-link">
+                    <span class="logo-text">Claude Code</span>
+                </a>
+                <span class="research-badge">Research preview</span>
+                <button class="collapse-btn" aria-label="Collapse sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Input Container -->
+            <div class="input-container">
+                <textarea class="input-textarea" placeholder="Ask Claude to write code..."></textarea>
+                <div class="input-actions">
+                    <button class="input-btn" aria-label="Add images">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+                        </svg>
+                    </button>
+                    <button class="model-btn">
+                        Opus 4.5
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="submit-btn" aria-label="Submit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Repository Row -->
+            <div class="repo-row">
+                <button class="repo-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                    </svg>
+                    my-landing-page
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <button class="repo-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6z"/>
+                        <path d="M18 9V3M6 15V9"/>
+                    </svg>
+                    feature/hero-update
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <button class="playground-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    </svg>
+                    Playground
+                </button>
+            </div>
+
+            <!-- Sessions Header -->
+            <div class="sessions-header">
+                <span class="sessions-label">Sessions</span>
+                <button class="sessions-filter-btn" aria-label="Filter sessions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Sessions List -->
+            <div class="sessions-list">
+                <div class="session-item active">
+                    <div class="session-title">Fix hero headline</div>
+                    <div class="session-meta">
+                        <span class="session-repo">my-landing-page</span>
+                        <span class="session-time">· now</span>
+                        <span class="session-diff">
+                            <span class="diff-add">+2</span>
+                            <span class="diff-remove">-1</span>
+                            <svg class="diff-merge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-item">
+                    <div class="session-title">Add dark mode support</div>
+                    <div class="session-meta">
+                        <span class="session-repo">my-landing-page</span>
+                        <span class="session-time">· 2h ago</span>
+                        <span class="session-diff">
+                            <span class="diff-add">+45</span>
+                            <span class="diff-remove">-12</span>
+                            <svg class="diff-merge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-item">
+                    <div class="session-title">Fix mobile navigation</div>
+                    <div class="session-meta">
+                        <span class="session-repo">my-landing-page</span>
+                        <span class="session-time">· Thu</span>
+                    </div>
+                </div>
+
+                <div class="session-item">
+                    <div class="session-title">Refactor API routes</div>
+                    <div class="session-meta">
+                        <span class="session-repo">backend-api</span>
+                        <span class="session-time">· Wed</span>
+                    </div>
+                </div>
+
+                <div class="session-item">
+                    <div class="session-title">Update pricing page</div>
+                    <div class="session-meta">
+                        <span class="session-repo">my-landing-page</span>
+                        <span class="session-time">· Mon</span>
+                        <span class="session-diff">
+                            <span class="diff-add">+18</span>
+                            <span class="diff-remove">-5</span>
+                            <svg class="diff-merge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="sidebar-bottom">
+                <div class="user-row">
+                    <button class="user-avatar">JG</button>
+                    <button class="report-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 8v4M12 16h.01"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        Report issue
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+        <main class="main-area">
+            <!-- Header -->
+            <div class="main-header">
+                <svg class="main-header-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+                </svg>
+                <button class="session-title-btn">Fix hero headline</button>
+                <button class="settings-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Conversation Thread -->
+            <div class="conversation">
+                <!-- User Message -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>Change the hero headline from "Welcome" to "Build faster"</p>
+                    </div>
+                </div>
+
+                <!-- Claude Message -->
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Reading <code>src/components/Hero.tsx</code></span>
+                        </div>
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing Hero.tsx - changed line 12</span>
+                        </div>
+                        <p>Done! Updated the headline from "Welcome" to "Build faster".</p>
+
+                        <!-- Visual Diff Block -->
+                        <div class="visual-diff">
+                            <div class="visual-diff-header">
+                                <span class="visual-diff-icon">📸</span>
+                                <span class="visual-diff-title">Visual Change</span>
+                            </div>
+                            <div class="visual-diff-body">
+                                <div class="visual-diff-panel">
+                                    <div class="visual-diff-label">Before</div>
+                                    <div class="visual-diff-screenshot">
+                                        <div class="mock-screenshot">
+                                            <div class="mock-nav">
+                                                <span class="mock-nav-dot red"></span>
+                                                <span class="mock-nav-dot yellow"></span>
+                                                <span class="mock-nav-dot green"></span>
+                                            </div>
+                                            <div class="mock-content">
+                                                <div class="mock-headline">Welcome</div>
+                                                <div class="mock-subtext">The best way to get started</div>
+                                                <div class="mock-button">Get Started</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="visual-diff-arrow">→</span>
+                                <div class="visual-diff-panel">
+                                    <div class="visual-diff-label">After</div>
+                                    <div class="visual-diff-screenshot">
+                                        <div class="mock-screenshot">
+                                            <div class="mock-nav">
+                                                <span class="mock-nav-dot red"></span>
+                                                <span class="mock-nav-dot yellow"></span>
+                                                <span class="mock-nav-dot green"></span>
+                                            </div>
+                                            <div class="mock-content">
+                                                <div class="mock-headline changed">Build faster</div>
+                                                <div class="mock-subtext">The best way to get started</div>
+                                                <div class="mock-button">Get Started</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="visual-diff-footer">
+                                <button class="viewport-btn active">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                        <path d="M8 21h8M12 17v4"/>
+                                    </svg>
+                                    Desktop
+                                </button>
+                                <button class="viewport-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                                        <path d="M12 18h.01"/>
+                                    </svg>
+                                    Mobile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Message 2 -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>Also update the button text to "Start Building"</p>
+                    </div>
+                </div>
+
+                <!-- Claude Message 2 -->
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing Hero.tsx - changed line 18</span>
+                        </div>
+                        <p>Done! Updated the button text.</p>
+
+                        <!-- Visual Diff Block 2 -->
+                        <div class="visual-diff">
+                            <div class="visual-diff-header">
+                                <span class="visual-diff-icon">📸</span>
+                                <span class="visual-diff-title">Visual Change #2</span>
+                            </div>
+                            <div class="visual-diff-body">
+                                <div class="visual-diff-panel">
+                                    <div class="visual-diff-label">Before</div>
+                                    <div class="visual-diff-screenshot">
+                                        <div class="mock-screenshot">
+                                            <div class="mock-nav">
+                                                <span class="mock-nav-dot red"></span>
+                                                <span class="mock-nav-dot yellow"></span>
+                                                <span class="mock-nav-dot green"></span>
+                                            </div>
+                                            <div class="mock-content">
+                                                <div class="mock-headline changed">Build faster</div>
+                                                <div class="mock-subtext">The best way to get started</div>
+                                                <div class="mock-button">Get Started</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="visual-diff-arrow">→</span>
+                                <div class="visual-diff-panel">
+                                    <div class="visual-diff-label">After</div>
+                                    <div class="visual-diff-screenshot">
+                                        <div class="mock-screenshot">
+                                            <div class="mock-nav">
+                                                <span class="mock-nav-dot red"></span>
+                                                <span class="mock-nav-dot yellow"></span>
+                                                <span class="mock-nav-dot green"></span>
+                                            </div>
+                                            <div class="mock-content">
+                                                <div class="mock-headline changed">Build faster</div>
+                                                <div class="mock-subtext">The best way to get started</div>
+                                                <div class="mock-button changed">Start Building</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="visual-diff-footer">
+                                <button class="viewport-btn active">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                        <path d="M8 21h8M12 17v4"/>
+                                    </svg>
+                                    Desktop
+                                </button>
+                                <button class="viewport-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                                        <path d="M12 18h.01"/>
+                                    </svg>
+                                    Mobile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Input -->
+            <div class="main-input">
+                <div class="main-input-row">
+                    <div class="main-input-container">
+                        <textarea class="main-input-textarea" placeholder="Reply to Claude..."></textarea>
+                        <div class="main-input-actions">
+                            <button class="input-btn" aria-label="Add images">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+                                </svg>
+                            </button>
+                            <button class="model-btn">
+                                Opus 4.5
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <button class="open-cli-btn disabled">Open in CLI</button>
+                            <button class="submit-btn" aria-label="Submit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="open-pr-btn" id="openPrBtn">Open PR</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PR Modal -->
+    <div class="modal-overlay" id="prModal">
+        <div class="pr-modal">
+            <div class="pr-modal-header">
+                <span class="pr-modal-title">Open Pull Request</span>
+                <button class="pr-modal-close" id="closePrModal" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="pr-modal-body">
+                <div class="pr-field">
+                    <label class="pr-field-label">Title</label>
+                    <input type="text" class="pr-field-input" value="Update hero headline and CTA button">
+                </div>
+                <div class="pr-field">
+                    <label class="pr-field-label">Description</label>
+                    <textarea class="pr-field-textarea">Updated the hero section copy for the new campaign.
+
+- Changed headline from "Welcome" to "Build faster"
+- Changed CTA button from "Get Started" to "Start Building"</textarea>
+                </div>
+
+                <div class="pr-visual-changes">
+                    <div class="pr-visual-changes-title">Visual Changes</div>
+
+                    <div class="pr-visual-row">
+                        <div class="pr-visual-thumbnail">
+                            <div class="pr-visual-thumbnail-inner">
+                                <div class="pr-visual-thumbnail-nav"></div>
+                                <div class="pr-visual-thumbnail-content">Welcome</div>
+                            </div>
+                        </div>
+                        <span class="pr-visual-arrow">→</span>
+                        <div class="pr-visual-thumbnail">
+                            <div class="pr-visual-thumbnail-inner">
+                                <div class="pr-visual-thumbnail-nav"></div>
+                                <div class="pr-visual-thumbnail-content changed">Build faster</div>
+                            </div>
+                        </div>
+                        <span class="pr-visual-label">Headline change</span>
+                    </div>
+
+                    <div class="pr-visual-row">
+                        <div class="pr-visual-thumbnail">
+                            <div class="pr-visual-thumbnail-inner">
+                                <div class="pr-visual-thumbnail-nav"></div>
+                                <div class="pr-visual-thumbnail-content">Get Started</div>
+                            </div>
+                        </div>
+                        <span class="pr-visual-arrow">→</span>
+                        <div class="pr-visual-thumbnail">
+                            <div class="pr-visual-thumbnail-inner">
+                                <div class="pr-visual-thumbnail-nav"></div>
+                                <div class="pr-visual-thumbnail-content changed">Start Building</div>
+                            </div>
+                        </div>
+                        <span class="pr-visual-label">Button change</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pr-modal-footer">
+                <button class="pr-cancel-btn" id="cancelPrBtn">Cancel</button>
+                <button class="pr-create-btn">Create PR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PR Modal functionality
+        const openPrBtn = document.getElementById('openPrBtn');
+        const prModal = document.getElementById('prModal');
+        const closePrModal = document.getElementById('closePrModal');
+        const cancelPrBtn = document.getElementById('cancelPrBtn');
+
+        openPrBtn.addEventListener('click', () => {
+            prModal.classList.add('active');
+        });
+
+        closePrModal.addEventListener('click', () => {
+            prModal.classList.remove('active');
+        });
+
+        cancelPrBtn.addEventListener('click', () => {
+            prModal.classList.remove('active');
+        });
+
+        prModal.addEventListener('click', (e) => {
+            if (e.target === prModal) {
+                prModal.classList.remove('active');
+            }
+        });
+
+        // Viewport toggle functionality
+        document.querySelectorAll('.viewport-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const footer = btn.closest('.visual-diff-footer');
+                footer.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

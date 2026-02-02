@@ -800,27 +800,114 @@ a {
     color: var(--text-secondary);
 }
 
-/* Bottom Input */
-.main-input {
-    padding: 16px 24px;
+/* ============================================
+   BOTTOM SECTION (Action Bar + Reply Input)
+   ============================================ */
+.main-bottom {
+    padding: 0 24px 16px;
     border-top: 0.5px solid rgba(31, 30, 29, 0.1);
     background: var(--bg-page);
 }
 
-.main-input-row {
+/* Action Bar */
+.action-bar {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
 }
 
-.main-input-container {
-    flex: 1;
+.diff-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--btn-radius);
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+    border: var(--btn-border);
+    background: transparent;
+}
+
+.diff-btn:hover {
+    background: rgba(31, 30, 29, 0.03);
+}
+
+.diff-btn .diff-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.diff-btn .diff-stats {
+    display: flex;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.action-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.create-pr-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--btn-radius);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: var(--btn-border);
+    background: transparent;
+}
+
+.create-pr-btn:hover {
+    background: rgba(31, 30, 29, 0.03);
+}
+
+.create-pr-btn .pr-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.create-pr-btn .chevron-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 2px;
+}
+
+.open-cli-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--btn-radius);
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+    border: var(--btn-border);
+    background: transparent;
+}
+
+.open-cli-btn:hover {
+    background: rgba(31, 30, 29, 0.03);
+}
+
+.open-cli-btn .cli-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* Reply Input */
+.reply-input {
     background: var(--input-bg);
     border: var(--input-border);
     border-radius: var(--input-radius);
     padding: 12px;
 }
 
-.main-input-textarea {
+.reply-textarea {
     width: 100%;
     min-height: 40px;
     border: none;
@@ -833,39 +920,21 @@ a {
     line-height: 1.5;
 }
 
-.main-input-textarea::placeholder {
+.reply-textarea::placeholder {
     color: var(--text-muted);
 }
 
-.main-input-actions {
+.reply-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
     margin-top: 8px;
 }
 
-.open-pr-btn {
-    padding: 6px 12px;
-    border-radius: var(--btn-radius);
-    font-size: var(--font-size-small);
-    font-weight: 500;
-    color: white;
-    background: var(--accent-orange);
-    transition: opacity 0.1s ease;
-    margin-left: auto;
-}
-
-.open-pr-btn:hover {
-    opacity: 0.9;
-}
-
-/* State variations for the PR button */
-.open-pr-btn.disabled {
-    background: transparent;
-    color: var(--text-muted);
-    border: var(--btn-border);
-    cursor: not-allowed;
-    opacity: 0.5;
+.reply-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* ============================================

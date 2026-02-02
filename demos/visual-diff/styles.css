@@ -810,7 +810,6 @@ a {
 .main-input-row {
     display: flex;
     align-items: flex-end;
-    gap: 12px;
 }
 
 .main-input-container {
@@ -845,35 +844,28 @@ a {
     margin-top: 8px;
 }
 
-.open-cli-btn {
-    padding: 6px 12px;
-    border-radius: var(--btn-radius);
-    font-size: var(--font-size-small);
-    color: var(--text-muted);
-    border: var(--btn-border);
-}
-
-.open-cli-btn:hover {
-    background: rgba(31, 30, 29, 0.03);
-}
-
-.open-cli-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 .open-pr-btn {
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: var(--btn-radius);
     font-size: var(--font-size-small);
     font-weight: 500;
     color: white;
     background: var(--accent-orange);
     transition: opacity 0.1s ease;
+    margin-left: auto;
 }
 
 .open-pr-btn:hover {
     opacity: 0.9;
+}
+
+/* State variations for the PR button */
+.open-pr-btn.disabled {
+    background: transparent;
+    color: var(--text-muted);
+    border: var(--btn-border);
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 /* ============================================

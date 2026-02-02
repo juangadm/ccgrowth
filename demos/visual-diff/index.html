@@ -365,15 +365,41 @@
                         </span>
                     </button>
                     <div class="action-bar-right">
-                        <button class="create-pr-btn" id="openPrBtn">
-                            Create PR
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pr-icon">
-                                <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron-icon">
-                                <path d="M6 9l6 6 6-6"/>
-                            </svg>
-                        </button>
+                        <div class="create-pr-wrapper">
+                            <button class="create-pr-btn" id="createPrBtn">
+                                Create PR
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pr-icon">
+                                    <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
+                                </svg>
+                            </button>
+                            <button class="create-pr-chevron" id="createPrChevron" aria-label="PR options">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div class="pr-dropdown" id="prDropdown">
+                                <button class="pr-dropdown-item" id="openPrBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 3v12M18 9a3 3 0 100 6 3 3 0 000-6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 15v6"/>
+                                    </svg>
+                                    Create a PR
+                                </button>
+                                <button class="pr-dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                                    </svg>
+                                    Create a draft PR
+                                </button>
+                                <button class="pr-dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Manually create PR
+                                </button>
+                            </div>
+                        </div>
                         <button class="open-cli-btn">
                             Open in CLI
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cli-icon">
@@ -484,13 +510,37 @@
     </div>
 
     <script>
+        // PR Dropdown functionality
+        const createPrChevron = document.getElementById('createPrChevron');
+        const prDropdown = document.getElementById('prDropdown');
+
+        createPrChevron.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.create-pr-wrapper')) {
+                prDropdown.classList.remove('active');
+            }
+        });
+
         // PR Modal functionality
         const openPrBtn = document.getElementById('openPrBtn');
+        const createPrBtn = document.getElementById('createPrBtn');
         const prModal = document.getElementById('prModal');
         const closePrModal = document.getElementById('closePrModal');
         const cancelPrBtn = document.getElementById('cancelPrBtn');
 
+        // Open modal from dropdown item
         openPrBtn.addEventListener('click', () => {
+            prDropdown.classList.remove('active');
+            prModal.classList.add('active');
+        });
+
+        // Open modal from main button
+        createPrBtn.addEventListener('click', () => {
             prModal.classList.add('active');
         });
 

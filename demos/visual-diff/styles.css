@@ -850,16 +850,22 @@ a {
     gap: 8px;
 }
 
+.create-pr-wrapper {
+    position: relative;
+    display: flex;
+}
+
 .create-pr-btn {
     display: flex;
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    border-radius: var(--btn-radius);
+    border-radius: var(--btn-radius) 0 0 var(--btn-radius);
     font-size: var(--font-size-small);
     font-weight: 500;
     color: var(--text-secondary);
     border: var(--btn-border);
+    border-right: none;
     background: transparent;
 }
 
@@ -872,10 +878,82 @@ a {
     height: 14px;
 }
 
-.create-pr-btn .chevron-icon {
+.create-pr-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border-radius: 0 var(--btn-radius) var(--btn-radius) 0;
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+    border: var(--btn-border);
+    background: transparent;
+}
+
+.create-pr-chevron:hover {
+    background: rgba(31, 30, 29, 0.03);
+}
+
+.create-pr-chevron svg {
     width: 12px;
     height: 12px;
-    margin-left: 2px;
+}
+
+/* PR Dropdown Menu */
+.pr-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border: 0.5px solid rgba(31, 30, 29, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.15s ease;
+}
+
+.pr-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.pr-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: var(--font-size-small);
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.1s ease;
+}
+
+.pr-dropdown-item:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.pr-dropdown-item:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.pr-dropdown-item:hover {
+    background: rgba(31, 30, 29, 0.05);
+}
+
+.pr-dropdown-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
 }
 
 .open-cli-btn {

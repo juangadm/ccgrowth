@@ -929,6 +929,7 @@ a {
     gap: 10px;
     width: 100%;
     padding: 10px 14px;
+    padding-left: 40px;
     font-size: var(--font-size-small);
     color: var(--text-primary);
     background: transparent;
@@ -936,6 +937,18 @@ a {
     text-align: left;
     cursor: pointer;
     transition: background 0.1s ease;
+    position: relative;
+}
+
+.pr-dropdown-item.active {
+    padding-left: 14px;
+}
+
+.pr-dropdown-item .checkmark-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-primary);
+    flex-shrink: 0;
 }
 
 .pr-dropdown-item:first-child {
@@ -948,12 +961,6 @@ a {
 
 .pr-dropdown-item:hover {
     background: rgba(31, 30, 29, 0.05);
-}
-
-.pr-dropdown-item svg {
-    width: 16px;
-    height: 16px;
-    color: var(--text-muted);
 }
 
 .open-cli-btn {

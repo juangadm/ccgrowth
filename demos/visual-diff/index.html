@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Demo Navigation -->
+    <nav class="demo-nav">
+        <a href="../../">← Home</a>
+        <span class="nav-divider"></span>
+        <a href="../work-email-nudge/"><span class="nav-number">01</span> Work Email</a>
+        <span class="nav-divider"></span>
+        <a href="./" class="active"><span class="nav-number">02</span> Visual Diff</a>
+    </nav>
+
     <div class="app-container">
         <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
@@ -370,7 +379,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" class="pr-icon">
                                     <path d="M108,64A36,36,0,1,0,60,97.94v60.12a36,36,0,1,0,24,0V97.94A36.07,36.07,0,0,0,108,64ZM72,52A12,12,0,1,1,60,64,12,12,0,0,1,72,52Zm0,152a12,12,0,1,1,12-12A12,12,0,0,1,72,204Zm140-45.94V110.63a27.81,27.81,0,0,0-8.2-19.8L173,60h19a12,12,0,0,0,0-24H144a12,12,0,0,0-12,12V96a12,12,0,0,0,24,0V77l30.83,30.83a4,4,0,0,1,1.17,2.83v47.43a36,36,0,1,0,24,0ZM200,204a12,12,0,1,1,12-12A12,12,0,0,1,200,204Z"></path>
                                 </svg>
-                                Create PR
+                                Open PR
                             </button>
                             <button class="create-pr-chevron" id="createPrChevron" aria-label="PR options">
                                 <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -383,13 +392,13 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" class="checkmark-icon">
                                         <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
                                     </svg>
-                                    Create PR
+                                    Open PR
                                 </button>
                                 <button class="pr-dropdown-item">
-                                    Create draft PR
+                                    Open draft PR
                                 </button>
                                 <button class="pr-dropdown-item">
-                                    Manually create PR
+                                    View on GitHub
                                 </button>
                             </div>
                         </div>
@@ -554,8 +563,23 @@
         document.querySelectorAll('.viewport-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const footer = btn.closest('.visual-diff-footer');
+                const visualDiff = btn.closest('.visual-diff');
+                const body = visualDiff.querySelector('.visual-diff-body');
+                const panels = visualDiff.querySelectorAll('.visual-diff-panel');
+                const screenshots = visualDiff.querySelectorAll('.visual-diff-screenshot');
+                const mockScreenshots = visualDiff.querySelectorAll('.mock-screenshot');
+
                 footer.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+
+                // Check if Mobile button was clicked
+                const isMobile = btn.textContent.trim() === 'Mobile';
+
+                // Toggle mobile class on all relevant elements
+                body.classList.toggle('mobile', isMobile);
+                panels.forEach(p => p.classList.toggle('mobile', isMobile));
+                screenshots.forEach(s => s.classList.toggle('mobile', isMobile));
+                mockScreenshots.forEach(m => m.classList.toggle('mobile', isMobile));
             });
         });
     </script>

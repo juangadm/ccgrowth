@@ -181,9 +181,11 @@ a {
 }
 
 .logo-text {
-    font-size: var(--font-size-base);
+    font-family: var(--font-serif);
+    font-size: 22px;
     font-weight: 500;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .research-badge {
@@ -563,6 +565,7 @@ a {
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    background: #FFFFFF;
 }
 
 /* Main Header */
@@ -572,6 +575,7 @@ a {
     gap: 12px;
     padding: 12px 24px;
     border-bottom: 0.5px solid rgba(31, 30, 29, 0.1);
+    background: #FFFFFF;
 }
 
 .main-header-icon {
@@ -592,21 +596,28 @@ a {
     background: rgba(31, 30, 29, 0.05);
 }
 
-.settings-btn {
+.share-btn {
     margin-left: auto;
-    padding: 6px;
-    border-radius: var(--btn-radius);
-    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding: 0 12px;
+    background: rgb(254, 254, 254);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    border: 0.5px solid rgba(31, 30, 29, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    white-space: nowrap;
 }
 
-.settings-btn:hover {
-    background: rgba(31, 30, 29, 0.05);
-    color: var(--text-secondary);
-}
-
-.settings-btn svg {
-    width: 16px;
-    height: 16px;
+.share-btn:hover {
+    background: rgba(31, 30, 29, 0.03);
 }
 
 /* Conversation Thread */
@@ -861,7 +872,7 @@ a {
 .main-bottom {
     padding: 0 24px 16px;
     border-top: 0.5px solid rgba(31, 30, 29, 0.1);
-    background: var(--bg-page);
+    background: #FFFFFF;
 }
 
 /* Action Bar */

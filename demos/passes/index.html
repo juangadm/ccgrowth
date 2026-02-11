@@ -483,13 +483,13 @@
                 </div>
 
                 <!-- Warning Banner -->
-                <div class="share-warning-banner" id="shareWarningBanner" style="display: none;">
+                <div class="share-warning-banner" id="shareWarningBanner">
                     <svg class="share-warning-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.70798 3.70804C9.25201 2.78523 10.5372 2.72763 11.1738 3.53519L11.292 3.70804L17.792 14.7383C18.3812 15.7382 17.6606 17 16.5 17H3.49995C2.33937 17 1.61881 15.7382 2.20795 14.7383L8.70798 3.70804ZM10.3916 4.15824C10.1794 3.88887 9.75069 3.90817 9.56931 4.21586L3.06928 15.2461C2.87297 15.5794 3.11314 16 3.49995 16H16.5C16.8869 16 17.1271 15.5794 16.9307 15.2461L10.4306 4.21586L10.3916 4.15824ZM9.99998 13C10.4142 13 10.75 13.3358 10.75 13.75C10.7499 14.1642 10.4142 14.5 9.99998 14.5C9.58582 14.5 9.25002 14.1642 9.24998 13.75C9.24998 13.3358 9.58579 13.0001 9.99998 13ZM9.99998 8.00003C10.2761 8.00003 10.5 8.22389 10.5 8.50003V11.5C10.4999 11.7761 10.2761 12 9.99998 12C9.72389 12 9.50003 11.7761 9.49998 11.5V8.50003C9.49998 8.22391 9.72386 8.00007 9.99998 8.00003Z"></path></svg>
                     <p class="share-warning-text">This session is from a private repository. Sharing may expose code to anyone with the link.</p>
                 </div>
 
                 <!-- URL Row -->
-                <div class="share-url-row" id="shareUrlRow" style="display: none;">
+                <div class="share-url-row" id="shareUrlRow">
                     <button class="share-url-text-btn">
                         <span class="share-url-string" id="shareUrlString">https://claude.ai/code/session_01JiZSKVgPBJdqhRdfyXZghi</span>
                         <svg class="share-url-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14.4999 5.00017C14.776 5.00017 14.9999 5.22403 14.9999 5.50017V12.5002C14.9998 12.7762 14.7759 13.0002 14.4999 13.0002C14.2239 13.0001 14 12.7762 13.9999 12.5002V6.7072L5.85338 14.8537C5.6581 15.0488 5.34155 15.0489 5.14635 14.8537C4.95116 14.6585 4.95127 14.3419 5.14635 14.1467L13.2928 6.00017H7.49986C7.22387 6.00006 6.99995 5.77617 6.99986 5.50017C6.99986 5.22409 7.22381 5.00028 7.49986 5.00017H14.4999Z"></path></svg>
@@ -611,8 +611,8 @@
 
         function updateShareVisibility() {
             const show = isPublic || guestPassToggle.checked;
-            shareWarningBanner.style.display = show ? '' : 'none';
-            shareUrlRow.style.display = show ? '' : 'none';
+            shareWarningBanner.classList.toggle('visible', show);
+            shareUrlRow.classList.toggle('visible', show);
         }
 
         privateBtn.addEventListener('click', () => {

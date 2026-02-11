@@ -1747,6 +1747,21 @@ a {
     border: 1px solid rgb(135, 90, 8);
     border-radius: 12px;
     margin-top: 12px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    margin-top: 0;
+    border-width: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease, margin-top 0.25s ease, border-width 0.25s ease;
+}
+
+.share-warning-banner.visible {
+    max-height: 80px;
+    opacity: 1;
+    padding: 12px 16px;
+    margin-top: 12px;
+    border-width: 1px;
 }
 
 .share-warning-icon {
@@ -1766,11 +1781,24 @@ a {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 8px 12px;
+    padding: 0 12px;
     background: rgb(245, 244, 237);
     border: 0.5px solid rgba(31, 30, 29, 0.3);
     border-radius: 12px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    border-width: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease, margin-top 0.25s ease, border-width 0.25s ease;
+}
+
+.share-url-row.visible {
+    max-height: 60px;
+    opacity: 1;
+    padding: 8px 12px;
     margin-top: 8px;
+    border-width: 0.5px;
 }
 
 .share-url-text-btn {

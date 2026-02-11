@@ -195,213 +195,104 @@
 
             <!-- Conversation Thread -->
             <div class="conversation">
-                <!-- User Message -->
+                <!-- Exchange 1: Hamburger menu broken -->
                 <div class="message user">
                     <div class="message-content">
-                        <p>Add a limited-time sale badge and show the discounted price with the original crossed out</p>
+                        <p>The hamburger menu doesn't open on mobile. Users are reporting they can't navigate at all on phones.</p>
                     </div>
                 </div>
 
-                <!-- Claude Message -->
                 <div class="message assistant">
                     <div class="message-content">
                         <div class="thinking-step">
                             <span class="thinking-bullet">●</span>
-                            <span>Reading <code>src/components/ProductPage.tsx</code></span>
+                            <span>Reading <code>src/components/Navigation.tsx</code></span>
                         </div>
                         <div class="thinking-step">
                             <span class="thinking-bullet">●</span>
-                            <span>Reading <code>src/styles/product.module.css</code></span>
+                            <span>Reading <code>src/styles/navigation.module.css</code></span>
                         </div>
-                        <div class="thinking-step">
-                            <span class="thinking-bullet">●</span>
-                            <span>Editing ProductPage.tsx — added sale badge and price formatting (lines 24-41)</span>
-                        </div>
-                        <p>Done! Added a "Limited Time" sale badge and updated the pricing to show the original price crossed out with the sale price highlighted.</p>
-
-                        <!-- Visual Diff Block -->
-                        <div class="visual-diff">
-                            <div class="visual-diff-header">
-                                <span class="visual-diff-icon">📸</span>
-                                <span class="visual-diff-title">Visual Change</span>
-                            </div>
-                            <div class="visual-diff-body">
-                                <div class="visual-diff-panel">
-                                    <div class="visual-diff-label">Before</div>
-                                    <div class="visual-diff-screenshot">
-                                        <div class="mock-screenshot">
-                                            <div class="mock-nav">
-                                                <span class="mock-nav-dot red"></span>
-                                                <span class="mock-nav-dot yellow"></span>
-                                                <span class="mock-nav-dot green"></span>
-                                            </div>
-                                            <div class="mock-product-card">
-                                                <div class="mock-product-image"></div>
-                                                <div class="mock-product-details">
-                                                    <div class="mock-product-name">Nova Pro Wireless</div>
-                                                    <div class="mock-product-subtitle">Premium wireless headphones</div>
-                                                    <div class="mock-price-row">
-                                                        <span class="mock-price">$349.00</span>
-                                                    </div>
-                                                    <div class="mock-cta-button">Add to Cart</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="visual-diff-arrow">→</span>
-                                <div class="visual-diff-panel">
-                                    <div class="visual-diff-label">After</div>
-                                    <div class="visual-diff-screenshot">
-                                        <div class="mock-screenshot">
-                                            <div class="mock-nav">
-                                                <span class="mock-nav-dot red"></span>
-                                                <span class="mock-nav-dot yellow"></span>
-                                                <span class="mock-nav-dot green"></span>
-                                            </div>
-                                            <div class="mock-product-card">
-                                                <div class="mock-product-image">
-                                                    <div class="mock-sale-badge">SALE</div>
-                                                </div>
-                                                <div class="mock-product-details">
-                                                    <div class="mock-product-name">Nova Pro Wireless</div>
-                                                    <div class="mock-product-subtitle">Premium wireless headphones</div>
-                                                    <div class="mock-price-row mock-changed">
-                                                        <span class="mock-price-original">$349.00</span>
-                                                        <span class="mock-price-sale">$199.00</span>
-                                                        <span class="mock-savings-badge">-43%</span>
-                                                    </div>
-                                                    <div class="mock-cta-button">Add to Cart</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="visual-diff-footer">
-                                <button class="viewport-btn active">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
-                                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                        <path d="M8 21h8M12 17v4"/>
-                                    </svg>
-                                    Desktop
-                                </button>
-                                <button class="viewport-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
-                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
-                                        <path d="M12 18h.01"/>
-                                    </svg>
-                                    Mobile
-                                </button>
-                            </div>
-                        </div>
+                        <p>Found the issue — the mobile menu toggle was using a <code>mouseover</code> event instead of <code>click</code>. Fixed it to use <code>onClick</code> and added proper touch event handling. The menu now opens and closes correctly on mobile devices.</p>
                     </div>
                 </div>
 
-                <!-- User Message 2 -->
+                <!-- Exchange 2: Z-index overlay -->
                 <div class="message user">
                     <div class="message-content">
-                        <p>Now add a star rating and review count below the product name</p>
+                        <p>The menu opens now, but when it slides out it covers the search bar. Can you fix the z-index?</p>
                     </div>
                 </div>
 
-                <!-- Claude Message 2 -->
                 <div class="message assistant">
                     <div class="message-content">
                         <div class="thinking-step">
                             <span class="thinking-bullet">●</span>
-                            <span>Editing ProductPage.tsx — added rating component (line 19)</span>
+                            <span>Editing <code>navigation.module.css</code> — adjusting z-index stack (lines 42-58)</span>
+                        </div>
+                        <p>Fixed! Set the mobile nav overlay to <code>z-index: 50</code> and the search bar to <code>z-index: 60</code> so search stays accessible even when the menu is open. Also added a semi-transparent backdrop behind the menu.</p>
+                    </div>
+                </div>
+
+                <!-- Exchange 3: Touch targets -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>The nav links are way too small to tap on mobile. Can you increase the touch targets?</p>
+                    </div>
+                </div>
+
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing <code>Navigation.tsx</code> — updated mobile link styles (lines 67-78)</span>
                         </div>
                         <div class="thinking-step">
                             <span class="thinking-bullet">●</span>
-                            <span>Editing product.module.css — added star styles</span>
+                            <span>Editing <code>navigation.module.css</code> — increased padding and min-height</span>
                         </div>
-                        <p>Done! Added a 4.8-star rating with 2,847 reviews below the product name.</p>
+                        <p>Increased the touch targets to meet the 44px minimum recommended by Apple's HIG. Each nav link now has <code>min-height: 48px</code> with <code>padding: 12px 16px</code>. Also added a subtle divider between items for better visual separation.</p>
+                    </div>
+                </div>
 
-                        <!-- Visual Diff Block 2 -->
-                        <div class="visual-diff">
-                            <div class="visual-diff-header">
-                                <span class="visual-diff-icon">📸</span>
-                                <span class="visual-diff-title">Visual Change #2</span>
-                            </div>
-                            <div class="visual-diff-body">
-                                <div class="visual-diff-panel">
-                                    <div class="visual-diff-label">Before</div>
-                                    <div class="visual-diff-screenshot">
-                                        <div class="mock-screenshot">
-                                            <div class="mock-nav">
-                                                <span class="mock-nav-dot red"></span>
-                                                <span class="mock-nav-dot yellow"></span>
-                                                <span class="mock-nav-dot green"></span>
-                                            </div>
-                                            <div class="mock-product-card">
-                                                <div class="mock-product-image">
-                                                    <div class="mock-sale-badge">SALE</div>
-                                                </div>
-                                                <div class="mock-product-details">
-                                                    <div class="mock-product-name">Nova Pro Wireless</div>
-                                                    <div class="mock-product-subtitle">Premium wireless headphones</div>
-                                                    <div class="mock-price-row">
-                                                        <span class="mock-price-original">$349.00</span>
-                                                        <span class="mock-price-sale">$199.00</span>
-                                                        <span class="mock-savings-badge">-43%</span>
-                                                    </div>
-                                                    <div class="mock-cta-button">Add to Cart</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="visual-diff-arrow">→</span>
-                                <div class="visual-diff-panel">
-                                    <div class="visual-diff-label">After</div>
-                                    <div class="visual-diff-screenshot">
-                                        <div class="mock-screenshot">
-                                            <div class="mock-nav">
-                                                <span class="mock-nav-dot red"></span>
-                                                <span class="mock-nav-dot yellow"></span>
-                                                <span class="mock-nav-dot green"></span>
-                                            </div>
-                                            <div class="mock-product-card">
-                                                <div class="mock-product-image">
-                                                    <div class="mock-sale-badge">SALE</div>
-                                                </div>
-                                                <div class="mock-product-details">
-                                                    <div class="mock-product-name">Nova Pro Wireless</div>
-                                                    <div class="mock-rating-row mock-changed">
-                                                        <span class="mock-stars">★★★★★</span>
-                                                        <span class="mock-rating-text">4.8 (2,847 reviews)</span>
-                                                    </div>
-                                                    <div class="mock-product-subtitle">Premium wireless headphones</div>
-                                                    <div class="mock-price-row">
-                                                        <span class="mock-price-original">$349.00</span>
-                                                        <span class="mock-price-sale">$199.00</span>
-                                                        <span class="mock-savings-badge">-43%</span>
-                                                    </div>
-                                                    <div class="mock-cta-button">Add to Cart</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="visual-diff-footer">
-                                <button class="viewport-btn active">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
-                                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                        <path d="M8 21h8M12 17v4"/>
-                                    </svg>
-                                    Desktop
-                                </button>
-                                <button class="viewport-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
-                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
-                                        <path d="M12 18h.01"/>
-                                    </svg>
-                                    Mobile
-                                </button>
-                            </div>
+                <!-- Exchange 4: Logo too large -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>The logo takes up too much space in the mobile header. Can you make it smaller on screens under 768px?</p>
+                    </div>
+                </div>
+
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing <code>navigation.module.css</code> — added responsive logo sizing (line 15)</span>
                         </div>
+                        <p>Added a media query that scales the logo down to 28px height on screens under 768px (from 40px). Also reduced the header padding from 16px to 12px on mobile to reclaim more space for content.</p>
+                    </div>
+                </div>
+
+                <!-- Exchange 5: Dropdown submenus -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>Last thing — the dropdown submenus still only work on hover. They need to work on tap too.</p>
+                    </div>
+                </div>
+
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Reading <code>src/components/NavDropdown.tsx</code></span>
+                        </div>
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing <code>NavDropdown.tsx</code> — replaced hover with click/tap handler (lines 12-34)</span>
+                        </div>
+                        <div class="thinking-step">
+                            <span class="thinking-bullet">●</span>
+                            <span>Editing <code>navigation.module.css</code> — added mobile dropdown animation</span>
+                        </div>
+                        <p>Replaced the CSS <code>:hover</code> dropdown with a click/tap toggle. On mobile, submenus now slide down with a smooth 200ms animation. Tapping outside or on another menu item closes the active dropdown. Desktop hover behavior is preserved via a <code>@media (hover: hover)</code> query.</p>
                     </div>
                 </div>
             </div>
@@ -416,8 +307,8 @@
                         </svg>
                         Diff
                         <span class="diff-stats">
-                            <span class="diff-add">+42</span>
-                            <span class="diff-remove">-5</span>
+                            <span class="diff-add">+24</span>
+                            <span class="diff-remove">-8</span>
                         </span>
                     </button>
                     <div class="action-bar-right">
@@ -502,16 +393,17 @@
             <div class="pr-modal-body">
                 <div class="pr-field">
                     <label class="pr-field-label">Title</label>
-                    <input type="text" class="pr-field-input" value="Revamp product page with sale pricing and social proof">
+                    <input type="text" class="pr-field-input" value="Fix mobile navigation responsiveness">
                 </div>
                 <div class="pr-field">
                     <label class="pr-field-label">Description</label>
-                    <textarea class="pr-field-textarea">Revamped the product page to drive conversions.
+                    <textarea class="pr-field-textarea">Fixed mobile navigation across the ecommerce store.
 
-- Added "SALE" promotional badge on product image
-- Updated pricing: strikethrough original + highlighted sale price
-- Added -43% savings badge
-- Added 4.8-star rating with 2,847 review count</textarea>
+- Fixed hamburger menu using mouseover instead of click/tap
+- Resolved z-index stacking so search bar stays above nav overlay
+- Increased touch targets to 48px minimum (Apple HIG compliant)
+- Scaled logo down on screens under 768px
+- Replaced hover-only dropdowns with click/tap toggle + animation</textarea>
                 </div>
 
                 <div class="pr-visual-changes">
@@ -521,34 +413,34 @@
                         <div class="pr-visual-thumbnail">
                             <div class="pr-visual-thumbnail-inner">
                                 <div class="pr-visual-thumbnail-nav"></div>
-                                <div class="pr-visual-thumbnail-content">$349.00</div>
+                                <div class="pr-visual-thumbnail-content">☰ broken</div>
                             </div>
                         </div>
                         <span class="pr-visual-arrow">→</span>
                         <div class="pr-visual-thumbnail">
                             <div class="pr-visual-thumbnail-inner">
                                 <div class="pr-visual-thumbnail-nav"></div>
-                                <div class="pr-visual-thumbnail-content changed">$199.00</div>
+                                <div class="pr-visual-thumbnail-content changed">☰ tap works</div>
                             </div>
                         </div>
-                        <span class="pr-visual-label">Sale pricing</span>
+                        <span class="pr-visual-label">Mobile menu</span>
                     </div>
 
                     <div class="pr-visual-row">
                         <div class="pr-visual-thumbnail">
                             <div class="pr-visual-thumbnail-inner">
                                 <div class="pr-visual-thumbnail-nav"></div>
-                                <div class="pr-visual-thumbnail-content">No rating</div>
+                                <div class="pr-visual-thumbnail-content">32px links</div>
                             </div>
                         </div>
                         <span class="pr-visual-arrow">→</span>
                         <div class="pr-visual-thumbnail">
                             <div class="pr-visual-thumbnail-inner">
                                 <div class="pr-visual-thumbnail-nav"></div>
-                                <div class="pr-visual-thumbnail-content changed">★ 4.8</div>
+                                <div class="pr-visual-thumbnail-content changed">48px links</div>
                             </div>
                         </div>
-                        <span class="pr-visual-label">Star rating</span>
+                        <span class="pr-visual-label">Touch targets</span>
                     </div>
                 </div>
             </div>
@@ -579,6 +471,7 @@
                             <p class="share-option-title">Private</p>
                             <p class="share-option-desc">Only people you invite can view</p>
                         </div>
+                        <svg class="share-option-check" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.1883 5.10908C15.3699 4.96398 15.6346 4.96153 15.8202 5.11592C16.0056 5.27067 16.0504 5.53125 15.9403 5.73605L15.8836 5.82003L8.38354 14.8202C8.29361 14.9279 8.16242 14.9925 8.02221 14.9989C7.88203 15.0051 7.74545 14.9526 7.64622 14.8534L4.14617 11.3533L4.08172 11.2752C3.95384 11.0811 3.97542 10.817 4.14617 10.6463C4.31693 10.4755 4.58105 10.4539 4.77509 10.5818L4.85321 10.6463L7.96556 13.7586L15.1161 5.1794L15.1883 5.10908Z"></path></svg>
                     </button>
                     <button class="share-option-btn share-option-public">
                         <svg class="share-option-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 1.00098C14.9706 1.00098 19 5.03041 19 10.001C19 14.9715 14.9706 19.001 10 19.001C5.02944 19.001 1 14.9715 1 10.001C1 5.03041 5.02944 1.00098 10 1.00098ZM7.18359 4.10937C6.21342 4.39062 5.37073 4.93855 4.72168 5.64453C4.19296 5.5474 3.71375 5.40472 3.31934 5.21484C3.09326 5.81279 2.94189 6.44492 2.8711 7.10156C3.34427 7.37989 3.88916 7.58818 4.48438 7.72461C4.24725 8.59832 4.14159 9.48968 4.17188 10.3613C3.54693 10.5063 2.98023 10.5071 2.50195 10.3809C2.55614 11.1157 2.72916 11.8167 2.99902 12.4688C3.47571 12.4953 4.01958 12.4168 4.58 12.2461C4.7818 12.694 5.02427 13.126 5.31445 13.5352C5.60456 13.9445 5.90704 14.2991 6.22559 14.6064C5.7876 15.0722 5.31006 15.4198 4.82422 15.6484C5.37605 16.2148 6.03107 16.6823 6.75977 17.0195C7.08972 16.5384 7.4151 15.9628 7.73926 15.3145C8.44618 15.5827 9.20254 15.7519 9.99902 15.8086V17.001C9.99902 17.001 9.99902 17.001 9.99902 17.001C9.99966 17.001 10 17.001 10 17.001C10.797 16.9443 11.5538 16.7752 12.2607 16.5068C12.585 17.1553 12.9105 17.7309 13.2402 18.2119C13.9689 17.8747 14.624 17.4072 15.1758 16.8408C14.6899 16.6122 14.2124 16.2646 13.7744 15.7988C14.0929 15.4915 14.3954 15.1369 14.6855 14.7276C14.9757 14.3183 15.2182 13.8864 15.42 13.4385C15.9804 13.6092 16.5243 13.6877 17.001 13.6611C17.2708 13.009 17.4439 12.3081 17.498 11.5732C17.0198 11.6995 16.453 11.6987 15.8281 11.5537C15.8584 10.6821 15.7527 9.79069 15.5156 8.917C16.1108 8.78057 16.6557 8.57228 17.1289 8.29395C17.0581 7.63731 16.9067 7.00518 16.6807 6.40723C16.2862 6.59711 15.807 6.73979 15.2783 6.83692C14.6293 6.13094 13.7866 5.583 12.8164 5.30176C12.5362 4.39582 12.0917 3.64478 11.5088 3.04297C11.3267 2.85432 11.1359 2.68472 10.9375 2.5332C10.6343 2.35483 10.3199 2.19745 9.99414 2.06543C9.68092 2.19745 9.36588 2.35483 9.0625 2.5332C8.86485 2.68388 8.67337 2.85403 8.49121 3.04297C7.90831 3.64478 7.46377 4.39582 7.18359 5.30176L7.18359 4.10937ZM8.64159 14.5283C8.33272 14.0988 8.03265 13.6174 7.75293 13.1016C7.09973 13.2971 6.46399 13.4328 5.8623 13.5C6.09804 13.8389 6.35785 14.1576 6.64159 14.4531L6.83398 14.6428C7.06714 14.8614 7.31303 15.0606 7.56418 15.4198C7.17772 15.8896C8.21355 16.3858 9.37633 16.6096 10.5508 16.5098C10.2224 16.2862 9.89754 16.0029 9.58202 15.6748C9.26312 15.3432 8.94744 14.9583 8.64159 14.5283ZM13.1572 12.5351C12.5305 12.6659 11.8818 12.8585 11.2275 13.1162C10.5729 13.3741 9.96666 13.6758 9.41894 14.0078C9.6946 14.3937 9.97385 14.7371 10.2539 15.0283C10.7036 15.4959 11.1332 15.8156 11.5117 15.9863C11.8879 16.1559 12.1765 16.1643 12.3935 16.0791C12.6107 15.9936 12.8179 15.7903 12.9775 15.4092C13.1379 15.0262 13.2342 14.4991 13.2441 13.8506C13.2503 13.4466 13.2187 13.0053 13.1572 12.5351ZM3.63768 8.51855C3.34594 9.76629 3.4167 11.1121 3.92186 12.3945C4.42675 13.6762 5.29203 14.7083 6.35546 15.4219C6.82009 14.8304 7.4201 14.2628 8.12694 13.748C7.6691 12.9972 7.2458 12.1466 6.88378 11.2275C6.52163 10.3082 6.25055 9.397 6.07323 8.53515C5.20566 8.64053 4.38055 8.63422 3.63768 8.51855ZM16.081 12.3828C15.4777 12.3027 14.8015 12.3016 14.081 12.3857C14.1506 12.9087 14.1838 13.4053 14.1767 13.8652C14.1698 14.3208 14.124 14.75 14.0361 15.1377C14.9636 14.4096 15.6617 13.4524 16.081 12.3828ZM11.0947 6.7705C10.4885 7.14026 9.82394 7.47239 9.11425 7.75195C8.40436 8.03157 7.69176 8.2418 6.99608 8.38476C7.16147 9.17591 7.41289 10.0225 7.75292 10.8857C8.09272 11.7483 8.48601 12.5376 8.90429 13.2285C9.51056 12.8587 10.176 12.5276 10.8857 12.248C11.5954 11.9685 12.3075 11.7572 13.0029 11.6143C12.8376 10.8236 12.5869 9.97794 12.2471 9.11523C11.907 8.25206 11.5133 7.46188 11.0947 6.7705ZM13.6426 4.57714C13.178 5.16855 12.5788 5.73625 11.8721 6.25097C12.3302 7.00222 12.754 7.85307 13.1162 8.77245C13.4782 9.69152 13.7485 10.6024 13.9258 11.4639C14.7932 11.3584 15.6185 11.3649 16.3613 11.4805C16.6528 10.233 16.5841 8.88752 16.0791 7.60546C15.5738 6.32297 14.707 5.29067 13.6426 4.57714ZM5.9619 4.86327C5.03547 5.59096 4.33712 6.54756 3.91796 7.6162C4.52106 7.69641 5.19677 7.69821 5.91698 7.61425C5.84736 7.09104 5.81616 6.59385 5.82323 6.13378C5.83026 5.679 5.87418 5.25038 5.9619 4.86327ZM8.48827 4.01367C8.11174 3.8439 7.82256 3.83644 7.60546 3.92187C7.38849 4.0075 7.182 4.20998 7.02245 4.59081C6.86212 4.97369 6.76585 5.50006 6.75585 6.14843C6.74965 6.55226 6.78027 6.99382 6.84179 7.46386C7.46863 7.33317 8.11803 7.14252 8.77245 6.88476C9.42675 6.62702 10.0316 6.32305 10.5791 5.9912C10.3036 5.6057 10.0259 5.26167 9.74608 4.9707C9.29651 4.50322 8.8667 4.18435 8.48827 4.01367ZM12.8223 4.10937C11.7866 3.61351 10.6234 3.3904 9.44921 3.49023C9.77744 3.71355 10.1026 3.99633 10.418 4.32421C10.7368 4.65579 11.0526 5.04068 11.3584 5.4707C11.9424 5.04095 12.4358 4.57931 12.8223 4.10937Z"></path></svg>
@@ -586,20 +479,19 @@
                             <p class="share-option-title">Public</p>
                             <p class="share-option-desc">Anyone with the link can view</p>
                         </div>
-                        <svg class="share-option-check" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.1883 5.10908C15.3699 4.96398 15.6346 4.96153 15.8202 5.11592C16.0056 5.27067 16.0504 5.53125 15.9403 5.73605L15.8836 5.82003L8.38354 14.8202C8.29361 14.9279 8.16242 14.9925 8.02221 14.9989C7.88203 15.0051 7.74545 14.9526 7.64622 14.8534L4.14617 11.3533L4.08172 11.2752C3.95384 11.0811 3.97542 10.817 4.14617 10.6463C4.31693 10.4755 4.58105 10.4539 4.77509 10.5818L4.85321 10.6463L7.96556 13.7586L15.1161 5.1794L15.1883 5.10908Z"></path></svg>
                     </button>
                 </div>
 
                 <!-- Warning Banner -->
-                <div class="share-warning-banner">
+                <div class="share-warning-banner" id="shareWarningBanner" style="display: none;">
                     <svg class="share-warning-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.70798 3.70804C9.25201 2.78523 10.5372 2.72763 11.1738 3.53519L11.292 3.70804L17.792 14.7383C18.3812 15.7382 17.6606 17 16.5 17H3.49995C2.33937 17 1.61881 15.7382 2.20795 14.7383L8.70798 3.70804ZM10.3916 4.15824C10.1794 3.88887 9.75069 3.90817 9.56931 4.21586L3.06928 15.2461C2.87297 15.5794 3.11314 16 3.49995 16H16.5C16.8869 16 17.1271 15.5794 16.9307 15.2461L10.4306 4.21586L10.3916 4.15824ZM9.99998 13C10.4142 13 10.75 13.3358 10.75 13.75C10.7499 14.1642 10.4142 14.5 9.99998 14.5C9.58582 14.5 9.25002 14.1642 9.24998 13.75C9.24998 13.3358 9.58579 13.0001 9.99998 13ZM9.99998 8.00003C10.2761 8.00003 10.5 8.22389 10.5 8.50003V11.5C10.4999 11.7761 10.2761 12 9.99998 12C9.72389 12 9.50003 11.7761 9.49998 11.5V8.50003C9.49998 8.22391 9.72386 8.00007 9.99998 8.00003Z"></path></svg>
                     <p class="share-warning-text">This session is from a private repository. Sharing may expose code to anyone with the link.</p>
                 </div>
 
                 <!-- URL Row -->
-                <div class="share-url-row">
+                <div class="share-url-row" id="shareUrlRow" style="display: none;">
                     <button class="share-url-text-btn">
-                        <span class="share-url-string">https://claude.ai/code/session_01JiZSKVgPBJdqhRdfyXZghi</span>
+                        <span class="share-url-string" id="shareUrlString">https://claude.ai/code/session_01JiZSKVgPBJdqhRdfyXZghi</span>
                         <svg class="share-url-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14.4999 5.00017C14.776 5.00017 14.9999 5.22403 14.9999 5.50017V12.5002C14.9998 12.7762 14.7759 13.0002 14.4999 13.0002C14.2239 13.0001 14 12.7762 13.9999 12.5002V6.7072L5.85338 14.8537C5.6581 15.0488 5.34155 15.0489 5.14635 14.8537C4.95116 14.6585 4.95127 14.3419 5.14635 14.1467L13.2928 6.00017H7.49986C7.22387 6.00006 6.99995 5.77617 6.99986 5.50017C6.99986 5.22409 7.22381 5.00028 7.49986 5.00017H14.4999Z"></path></svg>
                     </button>
                     <button class="share-copy-link-btn" id="shareCopyBtn">Copy link</button>
@@ -625,11 +517,11 @@
                         <span class="share-checkbox-visual">
                             <svg class="share-checkbox-check-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 3L4.5 9L2 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </span>
-                        <span class="share-checkbox-label">Give the viewer 7 days of Claude Pro</span>
+                        <span class="share-checkbox-label">Give the viewer 7 days of Claude Pro · <a href="https://support.claude.com/en/articles/12875061-claude-code-guest-passes" target="_blank" class="share-terms-link">Terms apply</a></span>
                     </label>
 
                     <div class="share-guest-pass-note" id="guestPassNote">
-                        <textarea placeholder="Add a note (optional)"></textarea>
+                        <textarea placeholder="Add a note (optional)">Check out this session — Claude fixed our entire mobile nav in 5 prompts. Hamburger menu, touch targets, the works.</textarea>
                     </div>
                 </div>
             </div>
@@ -685,29 +577,6 @@
             }
         });
 
-        // Viewport toggle functionality
-        document.querySelectorAll('.viewport-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const footer = btn.closest('.visual-diff-footer');
-                const visualDiff = btn.closest('.visual-diff');
-                const body = visualDiff.querySelector('.visual-diff-body');
-                const panels = visualDiff.querySelectorAll('.visual-diff-panel');
-                const screenshots = visualDiff.querySelectorAll('.visual-diff-screenshot');
-                const mockScreenshots = visualDiff.querySelectorAll('.mock-screenshot');
-
-                footer.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                // Check if Mobile button was clicked
-                const isMobile = btn.textContent.trim() === 'Mobile';
-
-                // Toggle mobile class on all relevant elements
-                body.classList.toggle('mobile', isMobile);
-                panels.forEach(p => p.classList.toggle('mobile', isMobile));
-                screenshots.forEach(s => s.classList.toggle('mobile', isMobile));
-                mockScreenshots.forEach(m => m.classList.toggle('mobile', isMobile));
-            });
-        });
         // Share Modal functionality
         const shareBtn = document.querySelector('.share-btn');
         const shareModal = document.getElementById('shareModal');
@@ -730,14 +599,47 @@
             }
         });
 
+        const shareUrlString = document.getElementById('shareUrlString');
+        const shareWarningBanner = document.getElementById('shareWarningBanner');
+        const shareUrlRow = document.getElementById('shareUrlRow');
+        const privateBtn = document.querySelector('.share-option-private');
+        const publicBtn = document.querySelector('.share-option-public');
+        const checkSvg = privateBtn.querySelector('.share-option-check');
+        const baseUrl = 'https://claude.ai/code/session_01JiZSKVgPBJdqhRdfyXZghi';
+        const passUrl = baseUrl + '?pass=T-yEpTSU-Q';
+        let isPublic = false;
+
+        function updateShareVisibility() {
+            const show = isPublic || guestPassToggle.checked;
+            shareWarningBanner.style.display = show ? '' : 'none';
+            shareUrlRow.style.display = show ? '' : 'none';
+        }
+
+        privateBtn.addEventListener('click', () => {
+            isPublic = false;
+            privateBtn.appendChild(checkSvg);
+            updateShareVisibility();
+        });
+
+        publicBtn.addEventListener('click', () => {
+            isPublic = true;
+            publicBtn.appendChild(checkSvg);
+            updateShareVisibility();
+        });
+
         guestPassToggle.addEventListener('change', function() {
             if (this.checked) {
                 guestPassNote.classList.add('visible');
                 shareCopyBtn.textContent = 'Copy link with pass';
+                shareUrlString.textContent = passUrl;
+                isPublic = true;
+                publicBtn.appendChild(checkSvg);
             } else {
                 guestPassNote.classList.remove('visible');
                 shareCopyBtn.textContent = 'Copy link';
+                shareUrlString.textContent = baseUrl;
             }
+            updateShareVisibility();
         });
     </script>
 </body>

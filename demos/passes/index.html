@@ -641,6 +641,18 @@
             }
             updateShareVisibility();
         });
+
+        let copyTimeout;
+        shareCopyBtn.addEventListener('click', function() {
+            clearTimeout(copyTimeout);
+            const prevText = this.textContent;
+            this.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align: -2px;"><path d="M11.5 3.5L5.5 10L2.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
+            this.classList.add('copied');
+            copyTimeout = setTimeout(() => {
+                this.textContent = prevText;
+                this.classList.remove('copied');
+            }, 2000);
+        });
     </script>
 </body>
 </html>

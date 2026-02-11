@@ -1863,6 +1863,10 @@ a {
     opacity: 0.85;
 }
 
+.share-copy-link-btn.copied {
+    background: rgb(22, 130, 62);
+}
+
 /* --- Guest Pass Section --- */
 .share-pass-divider {
     height: 0.5px;

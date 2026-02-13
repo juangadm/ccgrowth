@@ -126,6 +126,35 @@ body {
   margin-top: 8px;
 }
 
+.demo-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.demo-link-row .demo-link {
+  margin-top: 0;
+}
+
+.prepost-pill {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgb(240, 238, 230);
+  border: 0.5px solid rgba(31, 30, 29, 0.1);
+  border-radius: 8px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.prepost-pill:hover {
+  background: rgb(230, 228, 218);
+  color: var(--text-primary);
+}
+
 .demo-link--disabled {
   color: var(--text-muted);
 }
